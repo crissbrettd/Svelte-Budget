@@ -5,7 +5,7 @@
   "scripts": {
     "build": "rollup -c",
     "dev": "rollup -c -w",
-    "start": "sirv public --no-clear"
+    "start": "node server.js --no-clear"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^17.0.0",
@@ -18,6 +18,20 @@
     "svelte": "^3.0.0"
   },
   "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
     "sirv-cli": "^1.0.0"
-  }
+  },
+  "description": "*Looking for a shareable component template? Go here --> [sveltejs/component-template](https://github.com/sveltejs/component-template)*",
+  "main": "server.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/crissbrettd/Svelte-Budget.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/crissbrettd/Svelte-Budget/issues"
+  },
+  "homepage": "https://github.com/crissbrettd/Svelte-Budget#readme"
 }
