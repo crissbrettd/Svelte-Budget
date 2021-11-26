@@ -4,18 +4,26 @@
   export let location;
   export let total;
   export let category;
+
+  let isExpanded = false;
   const dispatch = createEventDispatcher();
 
+  function showHideItemDetails() {
+    isExpanded = !isExpanded;
+  }
+
   function removeItem() {
-      dispatch('removeItem', {id: id});
+    dispatch('removeItem', {id: id});
   }
 </script>
 
-<div>
+<div on:click={showHideItemDetails}>
   <!-- <div id="removeButton" on:click={removeItem}>X</div> -->
   <p>Location: {location}</p>
-  <p>Total: ${total}</p>
-  <p>Category: {category}</p>
+  {#if isExpanded}
+    <p>Total: ${total}</p>
+    <p>Category: {category}</p>
+  {/if}
 </div>
 
 <style>
@@ -29,6 +37,7 @@
     margin-top: 10px;
     padding-left: 10px; 
     /* padding-right: 10px; */
+    user-select: none;
     width: 20%;
     z-index: 0;
   }
