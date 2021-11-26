@@ -7,6 +7,10 @@
 <style>
   .popout {
     background-color: white;
+    border-color: black;
+    border-radius: 1em;
+    border-style: solid;
+    border-width: 1px;
     top: 123px;
     left: 40%;
     width: 20%;

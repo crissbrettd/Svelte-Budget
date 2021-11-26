@@ -62,6 +62,7 @@
   #exitButton {
     border-style: solid;
     border-color: gray;
+    border-top-right-radius: 1em;
     border-width: 1px;
     color: red;
     float: right;
