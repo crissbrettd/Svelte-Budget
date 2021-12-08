@@ -2,8 +2,12 @@
     import Purchase from './Purchase.svelte';
     import Form from './Form.svelte';
     import Popout from './Popout.svelte';
-    $: itemList = []
+    
+    $: itemList = loadPurchaseList()
     let shouldShowForm = false;
+
+    // let thing = loadPurchaseList()
+    // console.log(thing)
 
     function showForm() {
         shouldShowForm = !shouldShowForm;
@@ -25,8 +29,38 @@
 
     function handleRemovePurchase(event) {
         console.log(itemList);
-        itemList = itemList.filter((element) => {return element.detail.id !== event.detail.id})
+        itemList = itemList
+            .filter((element) => {return element.detail.id !== event.detail.id})
     }
+
+    function loadPurchaseList() {
+        const json = localStorage.getItem("purchase-list")
+        try {
+            if (json !== null) {
+                return JSON.parse(json)
+            }
+            else {
+                return []
+                }
+            }
+        catch {
+            console.log("Something went wrong reading from storage or past purchase list is empty.")
+            console.log(localStorage)
+            return []
+        }
+    }
+
+    function savePurchaseList() {
+        const json = JSON.stringify(itemList, null, 4);
+        localStorage.setItem("purchase-list", json);
+        console.log("saved")
+    }
+
+    function clearPurchaseList() {
+        localStorage.setItem("purchase-list", []);
+        itemList = []
+    }
+
 
 </script>
 
@@ -37,7 +71,19 @@
             <Purchase {...item} on:removeItem={handleRemovePurchase}/>
         {/each}
         
-        <button id="addPurchaseButton" on:click={showForm}>Add Purchase</button>
+        <div id="buttonContainer">
+            <button class="mainButton" on:click={showForm}>
+                Add Purchase
+            </button>
+            <br />
+            <button class="mainButton" on:click={savePurchaseList}>
+                Save Purchase List
+            </button>
+            <br />
+            <button class="mainButton" on:click={clearPurchaseList}>
+                Clear Purchase List
+            </button>
+        </div>
     </div>
     
     {#if shouldShowForm}
@@ -64,7 +110,7 @@
 		font-weight: 100;
 	}
 
-    #addPurchaseButton {
+    .mainButton {
         color: #ff3e00;
         margin-top: 10px;
     }
