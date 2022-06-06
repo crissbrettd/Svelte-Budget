@@ -13,17 +13,19 @@
   }
 
   function removeItem() {
-    dispatch('removeItem', {id: id});
+    dispatch('removeItem', id);
   }
 </script>
 
 <div on:click={showHideItemDetails}>
-  <!-- <div id="removeButton" on:click={removeItem}>X</div> -->
   <p>Location: {location}</p>
   {#if isExpanded}
     <p>Total: ${total}</p>
     <p>Category: {category}</p>
+    <!-- <p>{id}</p> --> <!-- show id for testing-->
+    <p id="removeButton" on:click={removeItem}>remove</p>
   {/if}
+  
 </div>
 
 <style>
@@ -36,24 +38,13 @@
     margin: auto;
     margin-top: 10px;
     padding-left: 10px; 
-    /* padding-right: 10px; */
     user-select: none;
-    width: 20%;
+    width: 80%;
     z-index: 0;
   }
 
   #removeButton {
-    border-style: solid;
-    border-color: gray;
-    border-width: 1px;
-    color: black;
-    float: right;
-    font-weight: bold;
-    margin: 0%;
-    padding: 5px;
-    position: relative;
-    text-align: center;
-    user-select: none;
-    width:10px;
+    font-size: smaller;
+    font-style: italic;
   }
 </style>
